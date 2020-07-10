@@ -56,7 +56,19 @@
   outline: none;
 }
 
-.remove:hover {
+.update {
+  padding: 12px 10px;
+  background-color: rgb(38, 139, 255);
+  color: white;
+  border: none;
+  margin-top: 20px;
+  border-radius: 4px;
+  outline: none;
+  margin-right: 10px;
+}
+
+.remove:hover,
+.update:hover {
   cursor: pointer;
 }
 
