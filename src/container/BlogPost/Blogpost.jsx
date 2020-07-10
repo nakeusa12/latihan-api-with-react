@@ -15,11 +15,26 @@ class Blogpost extends Component {
   };
 
   getPostAPI = () => {
-    axios.get("http://localhost:3004/posts").then((res) => {
-      this.setState({
-        post: res.data,
+    axios
+      .get("http://localhost:3004/posts?_sort=id&_order=desc")
+      .then((res) => {
+        this.setState({
+          post: res.data,
+        });
       });
-    });
+  };
+
+  // mengoper isi form kedalam db.json
+  postDataToAPI = () => {
+    axios
+      .post("http://localhost:3004/posts", this.state.formBlogPost)
+      .then((res) => {
+        console.log(res);
+        this.getPostAPI();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   handleRemove = (data) => {
@@ -30,16 +45,18 @@ class Blogpost extends Component {
 
   handleFormChange = (event) => {
     let formBlogPostNew = { ...this.state.formBlogPost };
+    let timeStamp = new Date().getTime();
+    formBlogPostNew["id"] = timeStamp;
+
     formBlogPostNew[event.target.name] = event.target.value;
-    let title = event.target.value;
-    this.setState(
-      {
-        formBlogPost: title,
-      },
-      () => {
-        console.log(this.state.formBlogPost);
-      }
-    );
+    this.setState({
+      formBlogPost: formBlogPostNew,
+    });
+  };
+
+  // method submit untuk mengirimnnya
+  handleSubmit = () => {
+    this.postDataToAPI();
   };
 
   componentDidMount() {
@@ -68,7 +85,14 @@ class Blogpost extends Component {
             onChange={this.handleFormChange}
           />
 
-          <button className="btn-submit">Simpan</button>
+          <button
+            className="btn-submit"
+            onClick={() => {
+              this.handleSubmit();
+            }}
+          >
+            Simpan
+          </button>
         </div>
         {this.state.post.map((post) => {
           return <Post key={post.id} data={post} remove={this.handleRemove} />;
