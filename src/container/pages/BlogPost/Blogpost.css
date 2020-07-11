@@ -110,4 +110,11 @@ button.btn-submit {
   color: #2196f3;
   text-transform: uppercase;
   font-weight: bold;
+  transition: 0.5s ease-in;
+}
+
+button.btn-submit:hover {
+  background-color: #2196f3;
+  color: white;
+  cursor: pointer;
 }
