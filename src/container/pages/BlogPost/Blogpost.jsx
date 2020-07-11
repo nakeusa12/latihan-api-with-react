@@ -112,6 +112,10 @@ class Blogpost extends Component {
     }
   };
 
+  handleDetail = (id) => {
+    this.props.history.push(`/detail-post/${id}`);
+  };
+
   // lifecycle pada react untuk mengupdate
   componentDidMount() {
     this.getPostAPI();
@@ -157,6 +161,7 @@ class Blogpost extends Component {
               data={post}
               remove={this.handleRemove}
               update={this.handleUpdate}
+              goDetail={this.handleDetail}
             />
           );
         })}

@@ -1,0 +1,15 @@
+.sb-title {
+  width: 80%;
+  padding: 10px;
+  background-color: teal;
+  color: white;
+  margin: 0 auto;
+}
+
+.sb-body {
+  width: 80%;
+  padding: 10px;
+  background-color: rgb(0, 163, 228);
+  color: white;
+  margin: 0 auto;
+}
